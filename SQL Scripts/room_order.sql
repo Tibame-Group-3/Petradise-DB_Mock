@@ -1,5 +1,5 @@
 create table room_order(
-	room_order_id int not null,
+	room_order_id int primary key not null,
     mem_id int not null,
     room_type_id int not null,
     room_id int not null,

@@ -8,6 +8,16 @@ public class PetVO {
 	private Character petSize;
 	private Character petStatus;
 
+	public PetVO(Integer petID, Integer memID, String petName, String petType, Character petSize, Character petStatus) {
+		super();
+		this.petID = petID;
+		this.memID = memID;
+		this.petName = petName;
+		this.petType = petType;
+		this.petSize = petSize;
+		this.petStatus = petStatus;
+	}
+
 	public Integer getPetID() {
 		return petID;
 	}

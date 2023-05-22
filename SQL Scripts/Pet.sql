@@ -5,7 +5,7 @@ USE gp3;
 DROP TABLE IF EXISTS pet;
 
 CREATE TABLE `pet` (
-	pet_id INT AUTO_INCREMENT NOT NULL,
+	pet_id INT NOT NULL,
     mem_id INT NOT NULL,
     pet_name VARCHAR(30),
     pet_type VARCHAR(30),

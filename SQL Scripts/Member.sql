@@ -5,7 +5,7 @@ USE gp3;
 DROP TABLE IF EXISTS member;
 
 CREATE TABLE `member` (
-	mem_id INT AUTO_INCREMENT NOT NULL,
+	mem_id INT NOT NULL,
     mem_name VARCHAR(50) NOT NULL,
     mem_account VARCHAR(20) NOT NULL,
     mem_password VARCHAR(20) NOT NULL,

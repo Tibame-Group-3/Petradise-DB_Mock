@@ -1,5 +1,5 @@
 create table administrator(
-	admin_id int not null,
+	admin_id int primary key not null,
     admin_name varchar(50) not null,
     admin_account varchar(20) not null,
     admin_password varchar(20) not null,

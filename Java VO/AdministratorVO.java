@@ -1,7 +1,5 @@
 package newVO;
 
-import java.sql.Date;
-
 public class AdministratorVO implements java.io.Serializable {
 	private Integer adimn_id;
 	private String admin_name;
@@ -12,6 +10,20 @@ public class AdministratorVO implements java.io.Serializable {
 	private String admin_email;
 	private String admim_title;
 	private String admin_status;
+
+	public AdministratorVO(Integer adimn_id, String admin_name, String admin_account, String admin_password,
+			String admin_phone, String admin_address, String admin_email, String admim_title, String admin_status) {
+		super();
+		this.adimn_id = adimn_id;
+		this.admin_name = admin_name;
+		this.admin_account = admin_account;
+		this.admin_password = admin_password;
+		this.admin_phone = admin_phone;
+		this.admin_address = admin_address;
+		this.admin_email = admin_email;
+		this.admim_title = admim_title;
+		this.admin_status = admin_status;
+	}
 
 	public Integer getAdimn_id() {
 		return adimn_id;

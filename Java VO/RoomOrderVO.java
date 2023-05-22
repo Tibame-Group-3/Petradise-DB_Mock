@@ -17,6 +17,25 @@ public class RoomOrderVO implements java.io.Serializable {
 	private Integer room_bonus;
 	private String room_od_special_req;
 
+	public RoomOrderVO(Integer room_order_id, Integer mem_id, Integer room_type_id, Integer room_id, Integer pet_id,
+			Date room_order_date, Date check_in_date, Date check_out_date, String room_order_status,
+			Integer room_original_price, Integer room_final_pirce, Integer room_bonus, String room_od_special_req) {
+		super();
+		this.room_order_id = room_order_id;
+		this.mem_id = mem_id;
+		this.room_type_id = room_type_id;
+		this.room_id = room_id;
+		this.pet_id = pet_id;
+		this.room_order_date = room_order_date;
+		this.check_in_date = check_in_date;
+		this.check_out_date = check_out_date;
+		this.room_order_status = room_order_status;
+		this.room_original_price = room_original_price;
+		this.room_final_pirce = room_final_pirce;
+		this.room_bonus = room_bonus;
+		this.room_od_special_req = room_od_special_req;
+	}
+
 	public Integer getRoom_order_id() {
 		return room_order_id;
 	}

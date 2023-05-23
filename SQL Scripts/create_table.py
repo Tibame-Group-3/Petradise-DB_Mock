@@ -1,10 +1,16 @@
 import glob
+import os
 
 # Get a list of all .sql files in the current directory
 sql_files = glob.glob("*.sql")
 
+# Create result folder
+directory = "./result"
+if not os.path.exists(directory):
+    os.makedirs(directory)
+
 # Name of the output combined SQL file
-output_file = "combined_tables.sql"
+output_file = directory + "/combined_tables.sql"
 init_file_name = "init.sql"
 constraints_file_name = "constraints.sql"
 

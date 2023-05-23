@@ -22,28 +22,24 @@ create table administrator_access(
 
 /* hotel_owner */
 
-CREATE DATABASE IF NOT EXISTS gp3;
-
-use gp3;
-
-DROP TABLE IF EXISTS hotel_owner;
-CREATE TABLE hotel_owner (
-  hotel_id INT NOT NULL AUTO_INCREMENT,
-  hotel_name VARCHAR(20) NOT NULL,
-  hotel_address VARCHAR(100) NOT NULL,
-  hotel_status CHAR(1) NOT NULL DEFAULT '0',
-  hotel_lic VARCHAR(50) NOT NULL,
-  review_score_people INT,
-  review_score_total INT,
-  owner_account CHAR(8) NOT NULL,
-  owner_password VARCHAR(20) NOT NULL,
-  owner_name VARCHAR(50) NOT NULL,
-  owner_id VARCHAR(10) NOT NULL,
-  owner_bank CHAR,
-  owner_phone VARCHAR(20) NOT NULL,
-  owner_email VARCHAR(50) NOT NULL,
-  owner_access CHAR(1) NOT NULL DEFAULT '0',
-  constraint PRIMARY KEY(hotel_id)
+CREATE TABLE `hotel_owner` (
+  `hotel_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `hotel_name` VARCHAR(20) NOT NULL,
+  `hotel_address` VARCHAR(100) NOT NULL,
+  `hotel_status` CHAR(1) NOT NULL DEFAULT '0',
+  `hotel_lic_id` VARCHAR(50) NOT NULL,
+  `hotel_lic_pic` LONGBLOB,
+  `review_score_people` INT,
+  `review_score_total` INT,
+  `owner_account` CHAR(8) NOT NULL,
+  `owner_password` VARCHAR(20) NOT NULL,
+  `owner_name` VARCHAR(50) NOT NULL,
+  `owner_id` VARCHAR(10) NOT NULL,
+  `owner_bank` CHAR,
+  `owner_phone` VARCHAR(20) NOT NULL,
+  `owner_email` VARCHAR(50) NOT NULL,
+  `owner_access` CHAR(1) NOT NULL DEFAULT '0'
+   
 );
 
 
@@ -112,6 +108,41 @@ create table access_function(
 );
 
 
+/* room_pic */
+
+CREATE TABLE `room_pic` (
+  `room_pic_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
+  `room_type_id` INT NOT NULL,
+  `room_pic` LONGBLOB 
+ );
+
+
+/* room */
+
+CREATE TABLE `room` (
+  `room_id` INT NOT NULL PRIMARY KEY,
+  `room_type_id` INT NOT NULL,
+  `pet_id` INT NOT NULL,
+  `room_name` VARCHAR(30),
+  `room_sale_status` CHAR(1) NOT NULL DEFAULT '0',
+  `room_status` CHAR(1) NOT NULL DEFAULT '0',
+  `room_pet_type` VARCHAR(30) NOT NULL
+ );
+
+
+/* room_type */
+
+CREATE TABLE `room_type` (
+  `room_type_id` INT NOT NULL PRIMARY KEY,
+  `hotel_id` INT NOT NULL,
+  `room_type_name` VARCHAR(30) NOT NULL,
+  `room_type_amount` INT NOT NULL,
+  `room_type_sale_status` CHAR(1) NOT NULL DEFAULT '0',
+  `room_type_about` VARCHAR(1000),
+  `room_type_price` INT NOT NULL
+ );
+
+
 /* Member */
 
 CREATE TABLE `member` (
@@ -143,6 +174,15 @@ CREATE TABLE `bonus`(
 
 
 
+/* fav-list */
+
+CREATE TABLE `fav_list` (
+  `fav_list_id` INT NOT NULL PRIMARY KEY,
+  `mem_id` INT NOT NULL,
+  `room_type_id` INT NOT NULL
+   );
+
+
 /* ---------- ADD CONSTRAINTS ---------- */
 
 
@@ -156,3 +196,24 @@ ALTER TABLE pet ADD(
 ALTER TABLE bonus ADD(
     CONSTRAINT fk_bonus_member FOREIGN KEY (mem_id)  REFERENCES member (mem_id)
 );
+-- fav_list--
+ALTER TABLE fav_list ADD(
+    CONSTRAINT fk_fav_list_member FOREIGN KEY (mem_id) REFERENCES member (mem_id),
+    CONSTRAINT fk_fav_list_room_type FOREIGN KEY (room_type_id) REFERENCES room_type (room_type_id)
+);
+-- room_type--
+ALTER TABLE room_type ADD(
+  
+    CONSTRAINT fk_room_type_hotel_owner FOREIGN KEY (hotel_id) REFERENCES hotel_owner (hotel_id)
+);
+-- room--
+ALTER TABLE room ADD(
+  CONSTRAINT fk_room_room_type FOREIGN KEY (room_type_id) REFERENCES room_type (room_type_id),
+  CONSTRAINT fk_room_pet FOREIGN KEY (pet_id) REFERENCES pet (pet_id)
+);
+
+-- room_pic--
+ALTER TABLE room ADD(
+    CONSTRAINT fk_room_pic_room_type FOREIGN KEY (room_type_id) REFERENCES room_type (room_type_id)
+);
+

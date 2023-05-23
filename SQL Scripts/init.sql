@@ -1,0 +1,5 @@
+DROP DATABASE gp3;
+
+CREATE DATABASE gp3;
+
+USE gp3;

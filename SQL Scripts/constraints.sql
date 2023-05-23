@@ -1,5 +1,3 @@
-USE gp3;
-
 
 /* PET */
 ALTER TABLE pet ADD(

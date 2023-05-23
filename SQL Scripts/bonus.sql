@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS bonus;
-
 CREATE TABLE `bonus`(
 	bonus_id INT NOT NULL AUTO_INCREMENT,
     mem_id INT NOT NULL,

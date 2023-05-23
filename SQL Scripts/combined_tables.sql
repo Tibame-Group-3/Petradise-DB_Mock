@@ -34,8 +34,6 @@ CREATE TABLE hotel_owner (
   constraint PRIMARY KEY(hotel_id)
 );
 
-DROP TABLE IF EXISTS pet;
-
 CREATE TABLE `pet` (
 	pet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     mem_id INT NOT NULL,
@@ -86,8 +84,6 @@ create table access_function(
     function_name varchar(20) not null
 );
 
-DROP TABLE IF EXISTS member;
-
 CREATE TABLE `member` (
 	mem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     mem_name VARCHAR(50) NOT NULL,
@@ -100,8 +96,6 @@ CREATE TABLE `member` (
     mem_access CHAR(1) NOT NULL,
     mem_bonus INT NOT NULL
 );
-
-DROP TABLE IF EXISTS bonus;
 
 CREATE TABLE `bonus`(
 	bonus_id INT NOT NULL AUTO_INCREMENT,

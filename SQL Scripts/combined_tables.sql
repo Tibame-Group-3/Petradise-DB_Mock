@@ -1,14 +1,26 @@
+
+/* ---------- INIT ---------- */
+
 DROP DATABASE gp3;
 
 CREATE DATABASE gp3;
 
 USE gp3;
 
+
+/* ---------- CREATE TABLE STATEMENTS ---------- */
+
+
+/* administrator_access */
+
 create table administrator_access(
 	admin_id int,
     function_id int,
      primary key(admin_id, function_id)
 );
+
+
+/* hotel_owner */
 
 CREATE DATABASE IF NOT EXISTS gp3;
 
@@ -34,6 +46,9 @@ CREATE TABLE hotel_owner (
   constraint PRIMARY KEY(hotel_id)
 );
 
+
+/* Pet */
+
 CREATE TABLE `pet` (
 	pet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     mem_id INT NOT NULL,
@@ -43,6 +58,9 @@ CREATE TABLE `pet` (
     pet_status CHAR(1) NOT NULL
 );
 
+
+/* room_review */
+
 create table room_review(
 	room_review_id int primary key not null,
     hotel_id int not null,
@@ -50,6 +68,9 @@ create table room_review(
 	room_review_score int not null,
 	room_review_content varchar(200)
 );
+
+
+/* administrator */
 
 create table administrator(
 	admin_id int primary key not null,
@@ -62,6 +83,9 @@ create table administrator(
     admim_title varchar(20) not null,
     admin_status char(1) not null
 );
+
+
+/* room_order */
 
 create table room_order(
 	room_order_id int primary key not null,
@@ -79,10 +103,16 @@ create table room_order(
     room_od_special_req varchar(100)
 );
 
+
+/* access_function */
+
 create table access_function(
 	function_id int primary key not null,
     function_name varchar(20) not null
 );
+
+
+/* Member */
 
 CREATE TABLE `member` (
 	mem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -97,6 +127,9 @@ CREATE TABLE `member` (
     mem_bonus INT NOT NULL
 );
 
+
+/* bonus */
+
 CREATE TABLE `bonus`(
 	bonus_id INT NOT NULL AUTO_INCREMENT,
     mem_id INT NOT NULL,
@@ -108,6 +141,9 @@ CREATE TABLE `bonus`(
     CONSTRAINT PRIMARY KEY(bonus_id, mem_id)
 );
 
+
+
+/* ---------- ADD CONSTRAINTS ---------- */
 
 
 /* PET */

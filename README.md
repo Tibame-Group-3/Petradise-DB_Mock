@@ -2,9 +2,9 @@
 
 ## 檔案目錄
 
-* Java VO 資料夾裡面存放 Java VO
+* Java_VO 資料夾裡面存放 Java VO
 
-* SQL Scripts 資料夾裡面存放 .sql Files
+* SQL_Scripts 資料夾裡面存放 .sql Files
 
 ### SQL Scripts 規則
 
@@ -19,11 +19,11 @@
   
 ### Sql檔合併工具
 
-- `SQL Scritps/create_table.py` 為合併所有SQL檔案成一個單獨SQL檔案的Python工具
+- `SQL_Scritps/create_table.py` 為合併所有SQL檔案成一個單獨SQL檔案的Python工具
   
-  `SQL Scritps/init.sql` 為初始化檔案(進行Database建置、刪除已存在Database等等作業)
+  `SQL_Scritps/init.sql` 為初始化檔案(進行Database建置、刪除已存在Database等等作業)
 
-  `SQL Scripts/result/combined_tables.sql` 為合併後檔案，只需執行此SQL檔案即可建置含全部Table的資料庫
+  `SQL_Scripts/result/combined_tables.sql` 為合併後檔案，只需執行此SQL檔案即可建置含全部Table的資料庫
 
   使用Python 執行`create_table.py`後會產生`result`資料夾，執行裡面的`combined_tables.sql`來創建資料庫
   

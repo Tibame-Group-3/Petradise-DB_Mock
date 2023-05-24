@@ -46,3 +46,43 @@ ALTER TABLE room ADD(
     CONSTRAINT fk_room_pic_room_type FOREIGN KEY (room_type_id) REFERENCES room_type (room_type_id)
 );
 
+/* comment */
+alter table `comment` add (
+	constraint `fk_sale_product_product` foreign key (`pd_id`) references `product` (`pd_id`),
+    constraint `fk_sale_product_member` foreign key (`mem_id`) references `member` (`mem_id`)
+);
+
+/* favorite */
+alter table `favorite` add (
+	constraint `fk_favorite_product` foreign key (`pd_id`) references `product` (`pd_id`),
+    constraint `fk_favorite_member` foreign key (`mem_id`) references `member` (`mem_id`)
+);
+
+/* order_detail */
+alter table `order_detail` add ( 
+	constraint `fk_oder_detail_order_master` foreign key (`od_id`) references `order_master` (`od_id`),
+    constraint `fk_oder_detail_product` foreign key (`pd_id`) references `product` (`pd_id`),
+    constraint `fk_oder_detail_sale_project` foreign key (`sale_pro_id`) references `sale_project` (`sale_pro_id`)
+);
+
+/* order_master */
+alter table `order_master` add (
+	constraint `fk_order_master_member` foreign key (`mem_id`) references `member` (`mem_id`)
+);
+
+/* product_img */
+alter table `product_img` add (
+	constraint `fk_product_img_product` foreign key (`pd_id`) references `product` (`pd_id`)
+);
+
+/* sale */
+alter table `sale` add (
+	constraint `fk_sale_product` foreign key (`pd_id`) references `product` (`pd_id`),
+    constraint `fk_sale_sale_project` foreign key (`sale_pro_id`) references `sale_project` (`sale_pro_id`)
+);
+
+/* status_date */
+alter table `status_date` add (
+	constraint `fk_status_date_order_master` foreign key (`od_id`) references `order_master` (`od_id`)
+);
+

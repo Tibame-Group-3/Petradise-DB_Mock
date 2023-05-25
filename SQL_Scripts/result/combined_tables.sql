@@ -11,12 +11,71 @@ USE gp3;
 /* ---------- CREATE TABLE STATEMENTS ---------- */
 
 
+/* order_detail */
+
+create table `order_detail` (
+	`od_id` int not null,
+    `pd_id` int not null,
+    `sale_pro_id` int not null,
+    `pd_amount` int not null,
+    `rank_status` char(1) not null default'0',
+    primary key (`od_id`, `pd_id`)
+);
+
+
+/* adoptedapplication */
+
+CREATE TABLE `adopted_application` (
+	adopted_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    mem_id INT NOT NULL,
+    animal_id INT NOT NULL,
+    adopter_id_number VARCHAR(10) NOT NULL,
+    adopter_name VARCHAR(30) NOT NULL,
+    adopter_address VARCHAR(100) NOT NULL,
+    adopter_phone VARCHAR(20) NOT NULL,
+    adopter_email VARCHAR(40) NOT NULL,
+    adopter_job VARCHAR(30) NOT NULL,
+    status CHAR(1) NOT NULL,
+    adopter_note VARCHAR(500)
+);
+
+
+
 /* administrator_access */
 
 create table administrator_access(
 	admin_id int,
     function_id int,
      primary key(admin_id, function_id)
+);
+
+
+/* comment */
+
+create table `comment` (
+	`com_id` int primary key not null auto_increment,
+    `pd_id` int not null,
+    `mem_id` int not null,
+    `com_date` datetime not null,
+    `com_content` varchar(200) default null,
+    `com_rank` int default null
+);
+
+
+/* animalcorporation */
+
+CREATE TABLE `animal_corporation` (
+	corp_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    applied_status CHAR(1) NOT NULL,
+	corp_account CHAR(8) NOT NULL,
+	corp_password CHAR(12) NOT NULL,
+	corp_name VARCHAR(50) NOT NULL UNIQUE,
+	corp_registered_id VARCHAR(50)NOT NULL UNIQUE,
+	corp_address VARCHAR(100) NOT NULL,
+	contact_name VARCHAR(20) NOT NULL,
+	contact_phone VARCHAR(20) NOT NULL,
+	contact_email VARCHAR(40) NOT NULL,
+	corp_access CHAR(1) NOT NULL
 );
 
 
@@ -43,6 +102,15 @@ CREATE TABLE `hotel_owner` (
 );
 
 
+/* status_date */
+
+create table `status_date` (
+	`od_id` int primary key not null,
+	`od_status` char(1) not null default'0',
+    `od_date` datetime not null
+);
+
+
 /* Pet */
 
 CREATE TABLE `pet` (
@@ -66,6 +134,15 @@ create table room_review(
 );
 
 
+/* animalfavorite */
+
+CREATE TABLE `animal_favorite` (
+	fav_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    animal_id INT NOT NULL,
+    mem_id INT NOT NULL
+);
+
+
 /* administrator */
 
 create table administrator(
@@ -79,6 +156,50 @@ create table administrator(
     admim_title varchar(20) not null,
     admin_status char(1) not null
 );
+
+
+/* product_img */
+
+create table `product_img` (
+	`pd_img_id` int primary key not null auto_increment,
+    `pd_id` int not null,
+    `pd_img` longblob 
+);
+
+
+/* lostpetpic */
+
+CREATE TABLE `lost_pet_pic` (
+	lost_pet_pic_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	article_id INT NOT NULL,
+	lost_pet_pic LONGBLOB
+);
+
+
+/* animal */
+
+CREATE TABLE `animal` (
+	animal_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    corp_id INT NOT NULL,
+    mem_id INT,
+    type VARCHAR(30) NOT NULL,
+    animal_name varchar(30) NOT NULL,
+    status CHAR(1) NOT NULL,
+    animal_sex CHAR(1) NOT NULL,
+    animal_age VARCHAR(10) NOT NULL,
+    animal_info_note VARCHAR(200)
+);
+
+
+
+/* animalpic */
+
+CREATE TABLE `animal_pic` (
+	pic_id INT NOT NULL PRIMARY KEY,
+    animal_id INT NOT NULL,
+    animal_pic LONGBLOB
+);
+
 
 
 /* room_order */
@@ -100,11 +221,75 @@ create table room_order(
 );
 
 
+/* favorite */
+
+create table `favorite` (
+	`pd_id` int not null,
+    `mem_id` int not null,
+    `fav_date` datetime not null,
+    primary key (`pd_id`, `mem_id`)
+);
+
+
+/* lostpetresponce */
+
+CREATE TABLE `lost_pet_responce` (
+	responce_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	mem_id INT NOT NULL,
+	article_id INT NOT NULL,
+	responce_content VARCHAR(200) NOT NULL,
+	responce_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
 /* access_function */
 
 create table access_function(
 	function_id int primary key not null,
     function_name varchar(20) not null
+);
+
+
+/* order_master */
+
+create table `order_master` (
+	`od_id` int primary key not null auto_increment,
+    `mem_id` int not null,
+    `price_ori` int not null,
+    `price_dis` int,
+    `price_bonus` int,
+    `price_ship` int not null,
+    `price_od` int not null,
+    `od_status` char(1) default'0',
+    `od_pay` char(1),
+    `od_ship` char(1),
+    `od_note` varchar(100) default null,
+    `od_trace` varchar(20),
+    `reci_name` varchar(50) not null,
+    `reci_phone` varchar(20) not null,
+    `reci_add` varchar(100),
+    `reci_store` varchar(20),
+    `reci_date` datetime default null
+);
+
+
+/* sale */
+
+create table `sale` (
+	`pd_id` int not null,
+    `sale_pro_id` int not null,
+    `sale_price` int not null,
+    primary key (`pd_id`, `sale_pro_id`)
+);
+
+
+/* sale_project */
+
+create table `sale_project` (
+	`sale_pro_id` int primary key not null auto_increment,
+    `dale_pro_name` varchar(50) not null,
+    `sale_pro_start` datetime not null,
+	`sale_pro_end` datetime not null
 );
 
 
@@ -115,6 +300,33 @@ CREATE TABLE `room_pic` (
   `room_type_id` INT NOT NULL,
   `room_pic` LONGBLOB 
  );
+
+
+/* promiselist */
+
+CREATE TABLE `promise_list`(
+	promise_id INT PRIMARY KEY AUTO_INCREMENT,
+    mem_id INT NOT NULL,
+    animal_id INT NOT NULL,
+    promise_time DATETIME NOT NULL,
+    promise_status CHAR(1) NOT NULL
+);
+
+
+/* product */
+
+create table `product` (
+	`pd_id` int primary key not null auto_increment,
+    `pd_type` varchar(20) not null,
+    `pd_pet_type` varchar(20) not null,
+    `pd_name` varchar(20) not null,
+    `pd_price` int not null,
+    `pd_spe` varchar(20) not null,
+    `pd_info` varchar(150) default null,
+    `pd_status` char(1) not null default'1',
+    `pd_date` datetime not null,
+    `pd_rank` double default null
+);
 
 
 /* room */
@@ -174,6 +386,24 @@ CREATE TABLE `bonus`(
 
 
 
+/* lostpetarticle */
+
+CREATE TABLE `lost_pet_article` (
+	article_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	mem_id INT NOT NULL,
+	article_update DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	lost_date DATE NOT NULL,
+	lost_place VARCHAR(50) NOT NULL,
+	chip_num CHAR(20),
+	species VARCHAR(20),
+	color VARCHAR(100) NOT NULL,
+	feature CHAR(50) NOT NULL,
+	text VARCHAR(200),
+	contact_phone VARCHAR(20),
+	article_status CHAR(1) NOT NULL
+);
+
+
 /* fav-list */
 
 CREATE TABLE `fav_list` (
@@ -231,5 +461,89 @@ ALTER TABLE room ADD(
 -- room_pic--
 ALTER TABLE room ADD(
     CONSTRAINT fk_room_pic_room_type FOREIGN KEY (room_type_id) REFERENCES room_type (room_type_id)
+);
+
+/* comment */
+alter table `comment` add (
+	constraint `fk_sale_product_product` foreign key (`pd_id`) references `product` (`pd_id`),
+    constraint `fk_sale_product_member` foreign key (`mem_id`) references `member` (`mem_id`)
+);
+
+/* favorite */
+alter table `favorite` add (
+	constraint `fk_favorite_product` foreign key (`pd_id`) references `product` (`pd_id`),
+    constraint `fk_favorite_member` foreign key (`mem_id`) references `member` (`mem_id`)
+);
+
+/* order_detail */
+alter table `order_detail` add ( 
+	constraint `fk_oder_detail_order_master` foreign key (`od_id`) references `order_master` (`od_id`),
+    constraint `fk_oder_detail_product` foreign key (`pd_id`) references `product` (`pd_id`),
+    constraint `fk_oder_detail_sale_project` foreign key (`sale_pro_id`) references `sale_project` (`sale_pro_id`)
+);
+
+/* order_master */
+alter table `order_master` add (
+	constraint `fk_order_master_member` foreign key (`mem_id`) references `member` (`mem_id`)
+);
+
+/* product_img */
+alter table `product_img` add (
+	constraint `fk_product_img_product` foreign key (`pd_id`) references `product` (`pd_id`)
+);
+
+/* sale */
+alter table `sale` add (
+	constraint `fk_sale_product` foreign key (`pd_id`) references `product` (`pd_id`),
+    constraint `fk_sale_sale_project` foreign key (`sale_pro_id`) references `sale_project` (`sale_pro_id`)
+);
+
+/* status_date */
+alter table `status_date` add (
+	constraint `fk_status_date_order_master` foreign key (`od_id`) references `order_master` (`od_id`)
+);
+
+/* animal */
+alter table `animal` add (
+	constraint `fk_animal_mem_id` foreign key (`mem_id`) references `member` (`mem_id`)
+);
+
+/* animal_pic */
+alter table `animal_pic` add (
+	constraint `fk_animal_pic_animal_id` foreign key (`animal_id`) references `animal` (`animal_id`)
+);
+
+/* promise_list */
+alter table `promise_list` add (
+	constraint `fk_promise_list_mem_id` foreign key (`mem_id`) references `member` (`mem_id`),
+    constraint `fk_promise_list_animal_id` foreign key (`animal_id`) references `animal` (`animal_id`)
+);
+
+/* adopted_application */
+alter table `adopted_application` add (
+	constraint `fk_adopted_application_mem_id` foreign key (`mem_id`) references `member` (`mem_id`),
+    constraint `fk_adopted_application_animal_id` foreign key (`animal_id`) references `animal` (`animal_id`)
+);
+
+/* animal_favorite */
+alter table `animal_favorite` add (
+	constraint `fk_animal_favorite_mem_id` foreign key (`mem_id`) references `member` (`mem_id`),
+    constraint `fk_animal_favorite_animal_id` foreign key (`animal_id`) references `animal` (`animal_id`)
+);
+
+/* lost_pet_article */
+alter table `lost_pet_article` add (
+	constraint `fk_lost_pet_article_mem_id` foreign key (`mem_id`) references `member` (`mem_id`)
+);
+
+/* lost_pet_responce */
+alter table `lost_pet_responce` add (
+	constraint `fk_lost_pet_responce_mem_id` foreign key (`mem_id`) references `member` (`mem_id`),
+    constraint `fk_lost_pet_responce_article_id` foreign key (`article_id`) references `lost_pet_article` (`article_id`)
+);
+
+/* lost_pet_pic */
+alter table `lost_pet_pic` add (
+    constraint `fk_lost_pet_pic_article_id` foreign key (`article_id`) references `lost_pet_article` (`article_id`)
 );
 

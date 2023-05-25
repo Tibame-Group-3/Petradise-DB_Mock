@@ -5,4 +5,4 @@ create table `comment` (
     `com_date` datetime not null,
     `com_content` varchar(200) default null,
     `com_rank` int default null
-)
+);

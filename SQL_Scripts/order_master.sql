@@ -16,4 +16,4 @@ create table `order_master` (
     `reci_add` varchar(100),
     `reci_store` varchar(20),
     `reci_date` datetime default null
-)
+);

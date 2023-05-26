@@ -273,6 +273,21 @@ create table `order_master` (
 );
 
 
+/* news_list */
+
+use gp3;
+
+create table news_list(
+news_id int primary key not null auto_increment,
+admin_id int not null,
+news_title varchar(20) not null,
+news_content varchar(1000) not null,
+news_date datetime not null,
+news_photo longblob
+);
+
+
+
 /* sale */
 
 create table `sale` (
@@ -560,5 +575,11 @@ alter table `lost_pet_responce` add (
 /* lost_pet_pic */
 alter table `lost_pet_pic` add (
     constraint `fk_lost_pet_pic_article_id` foreign key (`article_id`) references `lost_pet_article` (`article_id`)
+);
+
+/* news_list */
+alter table news_list add(
+	constraint fk_administrator_newslist
+	foreign key (admin_id) references administrator (admin_id)
 );
 

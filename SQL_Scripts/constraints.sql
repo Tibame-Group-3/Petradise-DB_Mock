@@ -130,3 +130,9 @@ alter table `lost_pet_pic` add (
     constraint `fk_lost_pet_pic_article_id` foreign key (`article_id`) references `lost_pet_article` (`article_id`)
 );
 
+/* news_list */
+alter table news_list add(
+	constraint fk_administrator_newslist
+	foreign key (admin_id) references administrator (admin_id)
+);
+

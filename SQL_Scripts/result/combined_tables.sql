@@ -366,8 +366,8 @@ CREATE TABLE `member` (
     mem_phone VARCHAR(20) NOT NULL,
     mem_email VARCHAR(50) NOT NULL,
     mem_address VARCHAR(100),
-    mem_access CHAR(1) NOT NULL,
-    mem_bonus INT NOT NULL
+    mem_access CHAR(1) NOT NULL DEFAULT 0,
+    mem_bonus INT NOT NULL DEFAULT 0
 );
 
 

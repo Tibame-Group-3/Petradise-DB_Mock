@@ -1,8 +1,8 @@
 package com.product.model;
 
-import java.util.Date;
+import java.sql.Date;
 
-public class NewListVO {
+public class NewsListVO implements java.io.Serializable{
 
 	private Integer newsId;
 	private Integer adminId;
@@ -59,7 +59,7 @@ public class NewListVO {
 		this.newsPhoto = newsPhoto;
 	}
 
-	public NewListVO(Integer newsId, Integer adminId, String newsTitle, String newsContent, Date newsDate,
+	public NewsListVO(Integer newsId, Integer adminId, String newsTitle, String newsContent, Date newsDate,
 			byte[] newsPhoto) {
 		super();
 		this.newsId = newsId;

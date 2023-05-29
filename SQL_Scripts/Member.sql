@@ -1,7 +1,7 @@
 CREATE TABLE `member` (
 	mem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     mem_name VARCHAR(50) NOT NULL,
-    mem_account VARCHAR(20) NOT NULL,
+    mem_account VARCHAR(20) NOT NULL UNIQUE,
     mem_password VARCHAR(20) NOT NULL,
     mem_birthday DATE NOT NULL,
     mem_phone VARCHAR(20) NOT NULL,

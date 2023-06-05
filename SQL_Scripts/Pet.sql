@@ -4,5 +4,5 @@ CREATE TABLE `pet` (
     pet_name VARCHAR(30),
     pet_type VARCHAR(30),
     pet_size CHAR(1),
-    pet_status CHAR(1) NOT NULL
+    pet_status CHAR(1) NOT NULL DEFAULT '0'
 );

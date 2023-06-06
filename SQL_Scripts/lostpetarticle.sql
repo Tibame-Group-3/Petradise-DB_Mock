@@ -10,5 +10,6 @@ CREATE TABLE `lost_pet_article` (
 	feature CHAR(50) NOT NULL,
 	text VARCHAR(200),
 	contact_phone VARCHAR(20),
-	article_status CHAR(1) NOT NULL
+	article_status CHAR(1) NOT NULL,
+    title VARCHAR(60) NOT NULL
 );

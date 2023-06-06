@@ -9,7 +9,7 @@ CREATE TABLE `room_type` (
   `room_pet_type`  VARCHAR(30) NOT NULL,
   `room_type_size`  CHAR(1) NOT NULL
  );
-INSERT INTO room_type(room_type_id, hotel_id, room_type_name, room_type_amount, room_type_sale_status, room_type_about, room_type_price, room_pet_type,room_type_size)
+INSERT INTO room_type( hotel_id, room_type_name, room_type_amount, room_type_sale_status, room_type_about, room_type_price, room_pet_type,room_type_size)
 VALUES
 (1, '小型豪華貓房', 1, '1', '為貓咪打造的豪華套房，提供貓砂箱、玩具與舒適的睡床。', 1000, '貓','0'),
 (2, '小型舒適貓房', 2, '1', '為貓咪打造的舒適套房，提供貓砂箱、玩具與舒適的睡床。', 800, '貓','0'),

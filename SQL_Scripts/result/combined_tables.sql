@@ -1,7 +1,7 @@
 
 /* ---------- INIT ---------- */
 
-DROP DATABASE gp3;
+DROP DATABASE IF EXISTS gp3;
 
 CREATE DATABASE gp3;
 

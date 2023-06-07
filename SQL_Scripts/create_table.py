@@ -15,13 +15,13 @@ init_file_name = "init.sql"
 constraints_file_name = "constraints.sql"
 
 # Open the output file in append mode
-with open(output_file, "a") as outfile:
+with open(output_file, "a", encoding="utf-8") as outfile:
     # Clear output file first
     outfile.truncate(0)
 
     outfile.write("\n/* ---------- INIT ---------- */\n\n")
     # Open init file
-    with open(init_file_name, "r") as init_file:
+    with open(init_file_name, "r", encoding="utf-8") as init_file:
         init_content = init_file.read()
         outfile.write(init_content)
         outfile.write("\n\n")

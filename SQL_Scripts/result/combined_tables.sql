@@ -1,7 +1,7 @@
 
 /* ---------- INIT ---------- */
 
-DROP DATABASE gp3;
+DROP DATABASE IF EXISTS gp3;
 
 CREATE DATABASE gp3;
 
@@ -119,8 +119,22 @@ CREATE TABLE `pet` (
     pet_name VARCHAR(30),
     pet_type VARCHAR(30),
     pet_size CHAR(1),
-    pet_status CHAR(1) NOT NULL
+    pet_status CHAR(1) NOT NULL DEFAULT '0'
 );
+
+INSERT INTO `pet` (mem_id, pet_name, pet_type, pet_size)
+VALUES
+    (1, 'Fluffy', 'Cat', 'S'),
+    (2, 'Buddy', 'Dog', 'M'),
+    (3, 'Charlie', 'Dog', 'L'),
+    (4, 'Whiskers', 'Cat', 'M'),
+    (5, 'Max', 'Dog', 'L'),
+    (6, 'Coco', 'Cat', 'S'),
+    (7, 'Rocky', 'Dog', 'M'),
+    (8, 'Luna', 'Cat', 'S'),
+    (9, 'Bailey', 'Dog', 'L'),
+    (10, 'Milo', 'Cat', 'M');
+
 
 
 /* room_review */
@@ -375,7 +389,7 @@ CREATE TABLE `room_type` (
 CREATE TABLE `member` (
 	mem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     mem_name VARCHAR(50) NOT NULL,
-    mem_account VARCHAR(20) NOT NULL,
+    mem_account VARCHAR(20) NOT NULL UNIQUE,
     mem_password VARCHAR(20) NOT NULL,
     mem_birthday DATE NOT NULL,
     mem_phone VARCHAR(20) NOT NULL,

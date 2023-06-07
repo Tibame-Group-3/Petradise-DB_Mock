@@ -45,6 +45,6 @@ with open(output_file, "a", encoding="UTF-8") as outfile:
             outfile.write("\n\n")
     outfile.write("\n/* ---------- ADD CONSTRAINTS ---------- */\n\n")
     # Add constraints at last
-    with open(constraints_file_name, "r") as constraints_file:
+    with open(constraints_file_name, "r", encoding="UTF-8") as constraints_file:
         constraints_content = constraints_file.read()
         outfile.write(constraints_content)

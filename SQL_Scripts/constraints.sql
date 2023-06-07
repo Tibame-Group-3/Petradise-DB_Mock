@@ -37,8 +37,8 @@ ALTER TABLE room_type ADD(
 );
 -- room--
 ALTER TABLE room ADD(
-  CONSTRAINT fk_room_room_type FOREIGN KEY (room_type_id) REFERENCES room_type (room_type_id)
- 
+  CONSTRAINT fk_room_room_type FOREIGN KEY (room_type_id) REFERENCES room_type (room_type_id),
+	CONSTRAINT fk_room_pet FOREIGN KEY (pet_id) REFERENCES pet (pet_id)
 );
 
 -- room_pic--

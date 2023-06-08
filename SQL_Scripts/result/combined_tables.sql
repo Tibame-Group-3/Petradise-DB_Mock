@@ -27,9 +27,9 @@ values
 
 
 
-/* administrator */
+/* admin */
 
-create table administrator(
+create table admin(
 	admin_id int primary key not null,
     admin_name varchar(50) not null,
     admin_account varchar(20) not null,
@@ -41,7 +41,7 @@ create table administrator(
     admin_status char(1) not null default '0'
 );
 
-INSERT INTO administrator (admin_id, admin_name, admin_account, admin_password, admin_phone, admin_address, admin_email, admin_title)
+INSERT INTO admin (admin_id, admin_name, admin_account, admin_password, admin_phone, admin_address, admin_email, admin_title)
 VALUES
 (1, 'John Doe', 'johndoe', 'pass123', '1234567890', '123 Main St, City', 'johndoe@example.com', '主管'),
 (2, 'Jane Smith', 'janesmith', 'password1', '9876543210', '456 Elm St, Town', 'janesmith@example.com', '主管'),
@@ -56,9 +56,9 @@ VALUES
 
 
 
-/* administrator_access */
+/* admin_access */
 
-create table administrator_access(
+create table admin_access(
 	admin_id int,
     function_id int,
      primary key(admin_id, function_id)
@@ -571,10 +571,10 @@ ALTER TABLE bonus ADD(
 );
 
 
-/* administrator_access */
-alter table administrator_access add(
-	constraint fk_admin_id foreign key(admin_id) references administrator(admin_id),
-    constraint fk_function_id foreign key(function_id) references access_function(function_id)
+/* admin_access */
+alter table admin_access add(
+	constraint fk_admin_access_admin foreign key(admin_id) references admin(admin_id),
+    constraint fk_admin_access_access_function foreign key(function_id) references access_function(function_id)
 );
 
 /* room_order */
@@ -692,7 +692,7 @@ alter table `lost_pet_pic` add (
 
 /* news_list */
 alter table news_list add(
-	constraint fk_administrator_newslist
-	foreign key (admin_id) references administrator (admin_id)
+	constraint fk_newslist_admin
+	foreign key (admin_id) references admin (admin_id)
 );
 

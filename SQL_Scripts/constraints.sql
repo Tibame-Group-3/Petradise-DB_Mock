@@ -11,10 +11,10 @@ ALTER TABLE bonus ADD(
 );
 
 
-/* administrator_access */
-alter table administrator_access add(
-	constraint fk_admin_id foreign key(admin_id) references administrator(admin_id),
-    constraint fk_function_id foreign key(function_id) references access_function(function_id)
+/* admin_access */
+alter table admin_access add(
+	constraint fk_admin_access_admin foreign key(admin_id) references admin(admin_id),
+    constraint fk_admin_access_access_function foreign key(function_id) references access_function(function_id)
 );
 
 /* room_order */
@@ -132,7 +132,7 @@ alter table `lost_pet_pic` add (
 
 /* news_list */
 alter table news_list add(
-	constraint fk_administrator_newslist
-	foreign key (admin_id) references administrator (admin_id)
+	constraint fk_newslist_admin
+	foreign key (admin_id) references admin (admin_id)
 );
 

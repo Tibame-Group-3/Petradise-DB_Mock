@@ -1,4 +1,4 @@
-create table administrator(
+create table admin(
 	admin_id int primary key not null,
     admin_name varchar(50) not null,
     admin_account varchar(20) not null,
@@ -10,7 +10,7 @@ create table administrator(
     admin_status char(1) not null default '0'
 );
 
-INSERT INTO administrator (admin_id, admin_name, admin_account, admin_password, admin_phone, admin_address, admin_email, admin_title)
+INSERT INTO admin (admin_id, admin_name, admin_account, admin_password, admin_phone, admin_address, admin_email, admin_title)
 VALUES
 (1, 'John Doe', 'johndoe', 'pass123', '1234567890', '123 Main St, City', 'johndoe@example.com', '主管'),
 (2, 'Jane Smith', 'janesmith', 'password1', '9876543210', '456 Elm St, Town', 'janesmith@example.com', '主管'),

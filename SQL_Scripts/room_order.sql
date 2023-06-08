@@ -11,7 +11,7 @@ create table room_order(
     room_original_price int not null,
     room_final_price int not null,
     room_bonus int,
-    room_od_special_req varchar(100)
+    room_od_special_req varchar(200)
 );
 
 INSERT INTO room_order (mem_id, room_type_id, room_id, pet_id, room_order_date, check_in_date, check_out_date, room_order_status, room_original_price, room_final_price, room_bonus, room_od_special_req) VALUES

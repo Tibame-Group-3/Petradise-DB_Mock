@@ -11,18 +11,24 @@ ALTER TABLE bonus ADD(
 );
 
 
-/* administrator_access */
-alter table administrator_access add(
-	constraint fk_admin_id foreign key(admin_id) references administrator(admin_id),
-    constraint fk_function_id foreign key(function_id) references access_function(function_id)
+/* admin_access */
+alter table admin_access add(
+	constraint fk_admin_access_admin foreign key(admin_id) references admin(admin_id),
+    constraint fk_admin_access_access_function foreign key(function_id) references access_function(function_id)
 );
 
 /* room_order */
 alter table room_order add(
-	constraint fk_mem_id foreign key(mem_id) references member(mem_id),
-	constraint fk_room_type_id foreign key(room_type_id) references room_type(room_type_id),
-    constraint fk_room_id foreign key(room_id) references room(room_id),
-	constraint fk_pet_id foreign key(pet_id) references pet(pet_id)
+	constraint fk_room_order_member foreign key(mem_id) references member(mem_id),
+	constraint fk_room_order_room_type foreign key(room_type_id) references room_type(room_type_id),
+    constraint fk_room_order_room foreign key(room_id) references room(room_id),
+	constraint fk_room_order_pet foreign key(pet_id) references pet(pet_id)
+);
+
+/* room_review */
+alter table room_review add(
+	constraint fk_room_review_member foreign key(mem_id) references member(mem_id),
+    constraint fk_room_review_room_order foreign key(room_order_id) references room_order(room_order_id)
 );
 
 -- fav_list--
@@ -132,7 +138,7 @@ alter table `lost_pet_pic` add (
 
 /* news_list */
 alter table news_list add(
-	constraint fk_administrator_newslist
-	foreign key (admin_id) references administrator (admin_id)
+	constraint fk_newslist_admin
+	foreign key (admin_id) references admin (admin_id)
 );
 

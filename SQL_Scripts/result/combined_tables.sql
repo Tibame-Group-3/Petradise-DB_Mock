@@ -611,7 +611,7 @@ alter table room_order add(
 
 /* room_review */
 alter table room_review add(
-	constraint fk_room_review_member foreign key(mem_id) references member(mem_id),
+	constraint fk_room_review_hotel_owner foreign key(hotel_id) references hotel_owner(hotel_id),
     constraint fk_room_review_room_order foreign key(room_order_id) references room_order(room_order_id)
 );
 

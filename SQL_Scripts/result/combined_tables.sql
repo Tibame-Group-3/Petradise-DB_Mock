@@ -11,20 +11,181 @@ USE gp3;
 /* ---------- CREATE TABLE STATEMENTS ---------- */
 
 
-/* access_function */
+/* admin_access */
 
-create table access_function(
-	function_id int primary key not null,
-    function_name char(1) not null
+create table admin_access(
+	admin_id int,
+    function_id int,
+     primary key(admin_id, function_id)
 );
 
-insert into access_function (function_id, function_name)
-values
-(1, '0'),
-(2, '1'),
-(3, '2'),
-(4, '3');
 
+/* order_detail */
+
+create table `order_detail` (
+	`od_id` int not null,
+    `pd_id` int not null,
+    `sale_pro_id` int not null,
+    `pd_amount` int not null,
+    `rank_status` char(1) not null default'0',
+    primary key (`od_id`, `pd_id`)
+);
+
+
+/* adoptedapplication */
+
+CREATE TABLE `adopted_application` (
+	adopted_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    mem_id INT NOT NULL,
+    animal_id INT NOT NULL,
+    adopter_id_number VARCHAR(10) NOT NULL,
+    adopter_name VARCHAR(30) NOT NULL,
+    adopter_address VARCHAR(100) NOT NULL,
+    adopter_phone VARCHAR(20) NOT NULL,
+    adopter_email VARCHAR(40) NOT NULL,
+    adopter_job VARCHAR(30) NOT NULL,
+    status CHAR(1) NOT NULL,
+    adopter_note VARCHAR(500)
+);
+
+
+
+/* comment */
+
+create table `comment` (
+	`com_id` int primary key not null auto_increment,
+    `pd_id` int not null,
+    `mem_id` int not null,
+    `com_date` datetime not null,
+    `com_content` varchar(200) default null,
+    `com_rank` int default null
+);
+
+
+/* animalcorporation */
+
+CREATE TABLE `animal_corporation` (
+	corp_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    applied_status CHAR(1) NOT NULL,
+	corp_account CHAR(8) NOT NULL,
+	corp_password CHAR(12) NOT NULL,
+	corp_name VARCHAR(50) NOT NULL UNIQUE,
+	corp_registered_id VARCHAR(50)NOT NULL UNIQUE,
+	corp_address VARCHAR(100) NOT NULL,
+	contact_name VARCHAR(20) NOT NULL,
+	contact_phone VARCHAR(20) NOT NULL,
+	contact_email VARCHAR(40) NOT NULL,
+	corp_access CHAR(1) NOT NULL
+);
+
+
+/* hotel_owner */
+
+CREATE TABLE `hotel_owner` (
+  `hotel_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `hotel_name` VARCHAR(20) NOT NULL,
+  `hotel_address` VARCHAR(100) NOT NULL,
+  `hotel_status` CHAR(1) NOT NULL DEFAULT '0',
+  `hotel_lic_id` VARCHAR(50) NOT NULL,
+  `hotel_lic_pic` LONGBLOB,
+  `review_score_people` INT,
+  `review_score_total` INT,
+  `owner_account` CHAR(8) NOT NULL,
+  `owner_password` VARCHAR(20) NOT NULL,
+  `owner_name` VARCHAR(50) NOT NULL,
+  `owner_id` VARCHAR(10) NOT NULL,
+  `owner_bank` CHAR,
+  `owner_phone` VARCHAR(20) NOT NULL,
+  `owner_email` VARCHAR(50) NOT NULL,
+  `owner_access` CHAR(1) NOT NULL DEFAULT '0'
+   
+);
+
+
+/* status_date */
+
+create table `status_date` (
+	`od_id` int primary key not null,
+	`od_status` char(1) not null default'0',
+    `od_date` datetime not null
+);
+
+
+/* Pet */
+
+CREATE TABLE `pet` (
+	pet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    mem_id INT NOT NULL,
+    pet_name VARCHAR(30),
+    pet_type VARCHAR(30),
+    pet_size CHAR(1),
+    pet_status CHAR(1) NOT NULL DEFAULT '0'
+);
+
+INSERT INTO `pet` (mem_id, pet_name, pet_type, pet_size)
+VALUES
+    (1, 'Fluffy', 'Cat', 'S'),
+    (2, 'Buddy', 'Dog', 'M'),
+    (3, 'Charlie', 'Dog', 'L'),
+    (4, 'Whiskers', 'Cat', 'M'),
+    (5, 'Max', 'Dog', 'L'),
+    (6, 'Coco', 'Cat', 'S'),
+    (7, 'Rocky', 'Dog', 'M'),
+    (8, 'Luna', 'Cat', 'S'),
+    (9, 'Bailey', 'Dog', 'L'),
+    (10, 'Milo', 'Cat', 'M');
+
+
+
+/* room_review */
+
+create table room_review(
+	room_review_id int primary key not null AUTO_INCREMENT,
+    hotel_id int not null,
+	room_order_id int not null,
+	room_review_score int not null,
+	room_review_content varchar(200)
+);
+
+INSERT INTO room_review (hotel_id, room_order_id, room_review_score, room_review_content) VALUES
+(1, 1, 4, 'The room was clean and comfortable.'),
+(1, 2, 5, 'Excellent room and great service.'),
+(2, 3, 3, 'Average room, but the staff was friendly.'),
+(2, 4, 2, 'The room was not up to expectations.'),
+(3, 5, 4, 'Good room with nice amenities.'),
+(3, 6, 5, 'Amazing room and fantastic view.'),
+(4, 7, 4, 'Comfortable room and helpful staff.'),
+(4, 8, 3, 'The room was noisy and needs improvement.'),
+(5, 9, 5, 'Spacious room with modern decor.'),
+(5, 10, 4, 'Enjoyed my stay in this room.');
+
+
+
+/* animalfavorite */
+
+CREATE TABLE `animal_favorite` (
+	fav_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    animal_id INT NOT NULL,
+    mem_id INT NOT NULL
+);
+
+
+/* product_img */
+
+create table `product_img` (
+	`pd_img_id` int primary key not null auto_increment,
+    `pd_id` int not null,
+    `pd_img` longblob 
+);
+
+
+/* lostpetpic */
+
+CREATE TABLE `lost_pet_pic` (
+	lost_pet_pic_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	article_id INT NOT NULL,
+	lost_pet_pic LONGBLOB
+);
 
 
 /* admin */
@@ -56,33 +217,6 @@ VALUES
 
 
 
-/* admin_access */
-
-create table admin_access(
-	admin_id int,
-    function_id int,
-     primary key(admin_id, function_id)
-);
-
-
-/* adoptedapplication */
-
-CREATE TABLE `adopted_application` (
-	adopted_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    mem_id INT NOT NULL,
-    animal_id INT NOT NULL,
-    adopter_id_number VARCHAR(10) NOT NULL,
-    adopter_name VARCHAR(30) NOT NULL,
-    adopter_address VARCHAR(100) NOT NULL,
-    adopter_phone VARCHAR(20) NOT NULL,
-    adopter_email VARCHAR(40) NOT NULL,
-    adopter_job VARCHAR(30) NOT NULL,
-    status CHAR(1) NOT NULL,
-    adopter_note VARCHAR(500)
-);
-
-
-
 /* animal */
 
 CREATE TABLE `animal` (
@@ -99,32 +233,6 @@ CREATE TABLE `animal` (
 
 
 
-/* animalcorporation */
-
-CREATE TABLE `animal_corporation` (
-	corp_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    applied_status CHAR(1) NOT NULL,
-	corp_account CHAR(8) NOT NULL,
-	corp_password CHAR(12) NOT NULL,
-	corp_name VARCHAR(50) NOT NULL UNIQUE,
-	corp_registered_id VARCHAR(50)NOT NULL UNIQUE,
-	corp_address VARCHAR(100) NOT NULL,
-	contact_name VARCHAR(20) NOT NULL,
-	contact_phone VARCHAR(20) NOT NULL,
-	contact_email VARCHAR(40) NOT NULL,
-	corp_access CHAR(1) NOT NULL
-);
-
-
-/* animalfavorite */
-
-CREATE TABLE `animal_favorite` (
-	fav_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    animal_id INT NOT NULL,
-    mem_id INT NOT NULL
-);
-
-
 /* animalpic */
 
 CREATE TABLE `animal_pic` (
@@ -133,293 +241,6 @@ CREATE TABLE `animal_pic` (
     animal_pic LONGBLOB
 );
 
-
-
-/* bonus */
-
-CREATE TABLE `bonus`(
-	bonus_id INT NOT NULL AUTO_INCREMENT,
-    mem_id INT NOT NULL,
-    bonus INT NOT NULL,
-	bonus_type VARCHAR(20),
-    bonus_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    bonus_status CHAR NOT NULL,
-    bonus_content VARCHAR(50),
-    CONSTRAINT PRIMARY KEY(bonus_id, mem_id)
-);
-
-
-
-/* comment */
-
-create table `comment` (
-	`com_id` int primary key not null auto_increment,
-    `pd_id` int not null,
-    `mem_id` int not null,
-    `com_date` datetime not null,
-    `com_content` varchar(200) default null,
-    `com_rank` int default null
-);
-
-
-/* fav-list */
-
-CREATE TABLE `fav_list` (
-  `fav_list_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `mem_id` INT NOT NULL,
-  `room_type_id` INT NOT NULL
-   );
-   INSERT INTO fav_list (mem_id, room_type_id) VALUES 
-(1, 5), (1, 6), (2, 7), (2, 8), (3, 9),
-(3, 10), (4, 11), (4, 12), (5, 13), (5, 14);
-
-
-
-/* favorite */
-
-create table `favorite` (
-	`pd_id` int not null,
-    `mem_id` int not null,
-    `fav_date` datetime not null,
-    primary key (`pd_id`, `mem_id`)
-);
-
-
-/* hotel_owner */
-
-CREATE TABLE `hotel_owner` (
-  `hotel_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `hotel_name` VARCHAR(20) NOT NULL,
-  `hotel_address` VARCHAR(100) NOT NULL,
-  `hotel_status` CHAR(1) NOT NULL DEFAULT '0',
-  `hotel_lic_id` VARCHAR(50) NOT NULL,
-  `hotel_lic_pic` LONGBLOB,
-  `review_score_people` INT,
-  `review_score_total` INT,
-  `owner_account` CHAR(8) NOT NULL,
-  `owner_password` VARCHAR(20) NOT NULL,
-  `owner_name` VARCHAR(50) NOT NULL,
-  `owner_id` VARCHAR(10) NOT NULL,
-  `owner_bank` CHAR,
-  `owner_phone` VARCHAR(20) NOT NULL,
-  `owner_email` VARCHAR(50) NOT NULL,
-  `owner_access` CHAR(1) NOT NULL DEFAULT '0'
-   
-);
-
-
-/* lostpetarticle */
-
-CREATE TABLE `lost_pet_article` (
-	article_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	mem_id INT NOT NULL,
-	article_update DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	lost_date DATE NOT NULL,
-	lost_place VARCHAR(50) NOT NULL,
-	chip_num CHAR(20),
-	species VARCHAR(20),
-	color VARCHAR(100) NOT NULL,
-	feature CHAR(50) NOT NULL,
-	text VARCHAR(200),
-	contact_phone VARCHAR(20),
-	article_status CHAR(1) NOT NULL,
-    title VARCHAR(60) NOT NULL
-);
-
-
-/* lostpetpic */
-
-CREATE TABLE `lost_pet_pic` (
-	lost_pet_pic_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	article_id INT NOT NULL,
-	lost_pet_pic LONGBLOB
-);
-
-
-/* lostpetresponce */
-
-CREATE TABLE `lost_pet_responce` (
-	responce_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	mem_id INT NOT NULL,
-	article_id INT NOT NULL,
-	responce_content VARCHAR(200) NOT NULL,
-	responce_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-
-/* Member */
-
-CREATE TABLE `member` (
-	mem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    mem_name VARCHAR(50) NOT NULL,
-    mem_account VARCHAR(20) NOT NULL UNIQUE,
-    mem_password VARCHAR(20) NOT NULL,
-    mem_birthday DATE NOT NULL,
-    mem_phone VARCHAR(20) NOT NULL,
-    mem_email VARCHAR(50) NOT NULL,
-    mem_address VARCHAR(100),
-    mem_access CHAR(1) NOT NULL DEFAULT '0',
-    mem_bonus INT NOT NULL DEFAULT 0
-);
-
-INSERT INTO `member` (mem_name, mem_account, mem_password, mem_birthday, mem_phone, mem_email, mem_address)
-VALUES
-	('testing', 'testing', 'testing', '1970-01-01', '1234567890', 'tibamegp3@gmail.com', '320桃園市中壢區復興路46號9樓'),
-    ('John Doe', 'john123', 'pass123', '1990-05-10', '1234567890', 'john.doe@example.com', '123 Main St, City'),
-    ('Jane Smith', 'jane456', 'pass456', '1985-08-20', '9876543210', 'jane.smith@example.com', '456 Elm St, City'),
-    ('Michael Johnson', 'michael789', 'pass789', '1992-02-15', '4567891230', 'michael.johnson@example.com', '789 Oak St, City'),
-    ('Emily Davis', 'emily001', 'pass001', '1998-11-25', '7891234560', 'emily.davis@example.com', '987 Pine St, City'),
-    ('David Wilson', 'david234', 'pass234', '1987-07-05', '1237894560', 'david.wilson@example.com', '345 Maple St, City'),
-    ('Olivia Thomas', 'olivia567', 'pass567', '1995-04-18', '9874561230', 'olivia.thomas@example.com', '654 Cedar St, City'),
-    ('James Anderson', 'james890', 'pass890', '1983-09-30', '1239876540', 'james.anderson@example.com', '789 Pine St, City'),
-    ('Sophia Miller', 'sophia002', 'pass002', '1991-06-12', '7894561230', 'sophia.miller@example.com', '123 Cedar St, City'),
-    ('Daniel Taylor', 'daniel345', 'pass345', '1997-03-05', '4561237890', 'daniel.taylor@example.com', '456 Maple St, City'),
-    ('Ava Martinez', 'ava678', 'pass678', '1994-01-15', '1234567890', 'ava.martinez@example.com', '789 Elm St, City');
-
-
-
-/* news_list */
-
-use gp3;
-
-create table news_list(
-news_id int primary key not null auto_increment,
-admin_id int not null,
-news_title varchar(20) not null,
-news_content varchar(1000) not null,
-news_date datetime not null,
-news_photo longblob
-);
-
-
-
-/* order_detail */
-
-create table `order_detail` (
-	`od_id` int not null,
-    `pd_id` int not null,
-    `sale_pro_id` int not null,
-    `pd_amount` int not null,
-    `rank_status` char(1) not null default'0',
-    primary key (`od_id`, `pd_id`)
-);
-
-
-/* order_master */
-
-create table `order_master` (
-	`od_id` int primary key not null auto_increment,
-    `mem_id` int not null,
-    `price_ori` int not null,
-    `price_dis` int,
-    `price_bonus` int,
-    `price_ship` int not null,
-    `price_od` int not null,
-    `od_status` char(1) default'0',
-    `od_pay` char(1),
-    `od_ship` char(1),
-    `od_note` varchar(100) default null,
-    `od_trace` varchar(20),
-    `reci_name` varchar(50) not null,
-    `reci_phone` varchar(20) not null,
-    `reci_add` varchar(100),
-    `reci_store` varchar(20),
-    `reci_date` datetime default null
-);
-
-
-/* Pet */
-
-CREATE TABLE `pet` (
-	pet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    mem_id INT NOT NULL,
-    pet_name VARCHAR(30),
-    pet_type VARCHAR(30),
-    pet_size CHAR(1),
-    pet_status CHAR(1) NOT NULL DEFAULT '0'
-);
-
-INSERT INTO `pet` (mem_id, pet_name, pet_type, pet_size)
-VALUES
-    (1, 'Fluffy', 'Cat', 'S'),
-    (2, 'Buddy', 'Dog', 'M'),
-    (3, 'Charlie', 'Dog', 'L'),
-    (4, 'Whiskers', 'Cat', 'M'),
-    (5, 'Max', 'Dog', 'L'),
-    (6, 'Coco', 'Cat', 'S'),
-    (7, 'Rocky', 'Dog', 'M'),
-    (8, 'Luna', 'Cat', 'S'),
-    (9, 'Bailey', 'Dog', 'L'),
-    (10, 'Milo', 'Cat', 'M');
-
-
-
-/* product */
-
-create table `product` (
-	`pd_id` int primary key not null auto_increment,
-    `pd_type` varchar(20) not null,
-    `pd_pet_type` varchar(20) not null,
-    `pd_name` varchar(20) not null,
-    `pd_price` int not null,
-    `pd_spe` varchar(20) not null,
-    `pd_info` varchar(150) default null,
-    `pd_status` char(1) not null default'1',
-    `pd_date` datetime not null,
-    `pd_rank` double default null
-);
-
-
-/* product_img */
-
-create table `product_img` (
-	`pd_img_id` int primary key not null auto_increment,
-    `pd_id` int not null,
-    `pd_img` longblob 
-);
-
-
-/* promiselist */
-
-CREATE TABLE `promise_list`(
-	promise_id INT PRIMARY KEY AUTO_INCREMENT,
-    mem_id INT NOT NULL,
-    animal_id INT NOT NULL,
-    promise_time DATETIME NOT NULL,
-    promise_status CHAR(1) NOT NULL
-);
-
-
-/* room */
-
-CREATE TABLE `room` (
-  `room_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `room_type_id` INT NOT NULL,
-   `pet_id`INT NOT NULL,
-  `room_name` VARCHAR(30),
-  `room_sale_status` CHAR(1) NOT NULL DEFAULT '0',
-  `room_status` CHAR(1) NOT NULL DEFAULT '0'
-  );
- INSERT INTO room (room_type_id, room_name, pet_id,room_sale_status, room_status) VALUES 
-(5, '房間A', NULL, '0', '0'), (5, '房間B', NULL,'0', '0'), (5, '房間C',NULL, '0', '0'), 
-(6, '房間A', NULL,'0', '0'), (6, '房間B',NULL, '0', '0'),  
-(7, '房間A', NULL,'0', '0'), (7, '房間B', NULL,'0', '0'), (7, '房間C',NULL, '0', '0'), 
-(8, '房間A', NULL,'0', '0'), (8, '房間B',NULL, '0', '0'), (8, '房間C',NULL, '0', '0'), 
-(9, '房間A', NULL,'0', '0'), (9, '房間B',NULL, '0', '0'), (9, '房間C', NULL,'0', '0'), 
-(10, '房間A', NULL,'0', '0'), (10, '房間B',NULL, '0', '0'),
-(11, '房間A',NULL, '0', '0'), (11, '房間B',NULL, '0', '0'),
-(12, '房間A', NULL,'0', '0'), (12, '房間B',NULL, '0', '0'),
-(13, '房間A',NULL, '0', '0'), (13, '房間B',NULL, '0', '0'),
-(14, '房間A', NULL,'0', '0'), (14, '房間B',NULL, '0', '0'),
-(15, '房間A', NULL,'0', '0'), (15, '房間B',NULL, '0', '0'),
-(16, '房間A', NULL,'0', '0'), (16, '房間B', NULL,'0', '0'),
-(17, '房間A',NULL, '0', '0'), (17, '房間B',NULL, '0', '0'),
-(18, '房間A',NULL, '0', '0'), (18, '房間B',NULL, '0', '0'),
-(19, '房間A', NULL,'0', '0'), (19, '房間B',NULL, '0', '0');
- 
-
-
- 
 
 
 /* room_order */
@@ -454,6 +275,101 @@ INSERT INTO room_order (mem_id, room_type_id, room_id, pet_id, room_order_date, 
 
 
 
+/* favorite */
+
+create table `favorite` (
+	`pd_id` int not null,
+    `mem_id` int not null,
+    `fav_date` datetime not null,
+    primary key (`pd_id`, `mem_id`)
+);
+
+
+/* lostpetresponce */
+
+CREATE TABLE `lost_pet_responce` (
+	responce_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	mem_id INT NOT NULL,
+	article_id INT NOT NULL,
+	responce_content VARCHAR(200) NOT NULL,
+	responce_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+/* access_function */
+
+create table access_function(
+	function_id int primary key not null,
+    function_name char(1) not null
+);
+
+insert into access_function (function_id, function_name)
+values
+(1, '0'),
+(2, '1'),
+(3, '2'),
+(4, '3');
+
+
+
+/* order_master */
+
+create table `order_master` (
+	`od_id` int primary key not null auto_increment,
+    `mem_id` int not null,
+    `price_ori` int not null,
+    `price_dis` int,
+    `price_bonus` int,
+    `price_ship` int not null,
+    `price_od` int not null,
+    `od_status` char(1) default'0',
+    `od_pay` char(1),
+    `od_ship` char(1),
+    `od_note` varchar(100) default null,
+    `od_trace` varchar(20),
+    `reci_name` varchar(50) not null,
+    `reci_phone` varchar(20) not null,
+    `reci_add` varchar(100),
+    `reci_store` varchar(20),
+    `reci_date` datetime default null
+);
+
+
+/* news_list */
+
+use gp3;
+
+create table news_list(
+news_id int primary key not null auto_increment,
+admin_id int not null,
+news_title varchar(20) not null,
+news_content varchar(1000) not null,
+news_date datetime not null,
+news_photo longblob
+);
+
+
+
+/* sale */
+
+create table `sale` (
+	`pd_id` int not null,
+    `sale_pro_id` int not null,
+    `sale_price` int not null,
+    primary key (`pd_id`, `sale_pro_id`)
+);
+
+
+/* sale_project */
+
+create table `sale_project` (
+	`sale_pro_id` int primary key not null auto_increment,
+    `dale_pro_name` varchar(50) not null,
+    `sale_pro_start` datetime not null,
+	`sale_pro_end` datetime not null
+);
+
+
 /* room_pic */
 
 CREATE TABLE `room_pic` (
@@ -461,29 +377,89 @@ CREATE TABLE `room_pic` (
   `room_type_id` INT NOT NULL,
   `room_pic` LONGBLOB 
  );
+ INSERT INTO `room_pic` (`room_type_id`) 
+VALUES 
+(1),(1),
+(2),(2),
+(3),(3),
+(4),(4),
+(5),(5),
+(6),(6),
+(7),(7),
+(8),(8),
+(9),(9),
+(10),(10),
+(11),(11),
+(12),(12),
+(13),(13),
+(14),(14),
+(15),(15),
+(16),(16),
+(17),(17),
+(18),(18),
+(19),(19),
+(20),(20),
+(21),(21),
+(22),(22),
+(23),(23);
 
 
-/* room_review */
 
-create table room_review(
-	room_review_id int primary key not null AUTO_INCREMENT,
-    hotel_id int not null,
-	room_order_id int not null,
-	room_review_score int not null,
-	room_review_content varchar(200)
+/* promiselist */
+
+CREATE TABLE `promise_list`(
+	promise_id INT PRIMARY KEY AUTO_INCREMENT,
+    mem_id INT NOT NULL,
+    animal_id INT NOT NULL,
+    promise_time DATETIME NOT NULL,
+    promise_status CHAR(1) NOT NULL
 );
 
-INSERT INTO room_review (hotel_id, room_order_id, room_review_score, room_review_content) VALUES
-(1, 1, 4, 'The room was clean and comfortable.'),
-(1, 2, 5, 'Excellent room and great service.'),
-(2, 3, 3, 'Average room, but the staff was friendly.'),
-(2, 4, 2, 'The room was not up to expectations.'),
-(3, 5, 4, 'Good room with nice amenities.'),
-(3, 6, 5, 'Amazing room and fantastic view.'),
-(4, 7, 4, 'Comfortable room and helpful staff.'),
-(4, 8, 3, 'The room was noisy and needs improvement.'),
-(5, 9, 5, 'Spacious room with modern decor.'),
-(5, 10, 4, 'Enjoyed my stay in this room.');
+
+/* product */
+
+create table `product` (
+	`pd_id` int primary key not null auto_increment,
+    `pd_type` varchar(20) not null,
+    `pd_pet_type` varchar(20) not null,
+    `pd_name` varchar(20) not null,
+    `pd_price` int not null,
+    `pd_spe` varchar(20) not null,
+    `pd_info` varchar(150) default null,
+    `pd_status` char(1) not null default'1',
+    `pd_date` datetime not null,
+    `pd_rank` double default null
+);
+
+
+/* room */
+
+use test;
+CREATE TABLE `room` (
+  `room_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `room_type_id` INT NOT NULL,
+   `pet_id`INT ,
+  `room_name` VARCHAR(30),
+  `room_sale_status` CHAR(1) NOT NULL DEFAULT '0',
+  `room_status` CHAR(1) NOT NULL DEFAULT '0'
+  );
+ INSERT INTO room (room_type_id, pet_id,room_name, room_sale_status, room_status) VALUES 
+(5, NULL, '房間A', '0', '0'), (5, NULL,'房間B','0', '0'), (5,NULL, '房間C', '0', '0'), 
+(6,  NULL,'房間A', '0', '0'), (6,NULL, '房間B', '0', '0'),  
+(7, NULL,'房間A', '0', '0'), (7,NULL, '房間B', '0', '0'), (7,NULL, '房間C', '0', '0'), 
+(8,NULL, '房間A','0', '0'), (8, NULL,'房間B','0', '0'), (8,NULL, '房間C', '0', '0'), 
+(9,NULL, '房間A','0', '0'), (9, NULL,'房間B','0', '0'), (9,NULL, '房間C', '0', '0'), 
+(10,NULL, '房間A', '0', '0'), (10,NULL, '房間B', '0', '0'),
+(11,NULL, '房間A', '0', '0'), (11, NULL,'房間B', '0', '0'),
+(12, NULL,'房間A', '0', '0'), (12,NULL, '房間B', '0', '0'),
+(13, NULL,'房間A','0', '0'), (13,NULL, '房間B', '0', '0'),
+(14, NULL,'房間A', '0', '0'), (14, NULL,'房間B', '0', '0'),
+(15,NULL, '房間A', '0', '0'), (15,NULL, '房間B', '0', '0'),
+(16, NULL,'房間A', '0', '0'), (16, NULL,'房間B', '0', '0'),
+(17,NULL, '房間A', '0', '0'), (17,NULL, '房間B', '0', '0'),
+(18,NULL,'房間A', '0', '0'), (18,NULL, '房間B', '0', '0'),
+(19,NULL, '房間A','0', '0'), (19,NULL, '房間B', '0', '0');
+ 
 
 
 
@@ -527,33 +503,82 @@ VALUES
 (15, '舒適貓房', 2, '1', '為貓咪打造的豪華套房，提供貓砂箱、玩具與舒適的睡床。', 500, '貓','0');
 
 
-/* sale */
+/* Member */
 
-create table `sale` (
-	`pd_id` int not null,
-    `sale_pro_id` int not null,
-    `sale_price` int not null,
-    primary key (`pd_id`, `sale_pro_id`)
+CREATE TABLE `member` (
+	mem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    mem_name VARCHAR(50) NOT NULL,
+    mem_account VARCHAR(20) NOT NULL UNIQUE,
+    mem_password VARCHAR(20) NOT NULL,
+    mem_birthday DATE NOT NULL,
+    mem_phone VARCHAR(20) NOT NULL,
+    mem_email VARCHAR(50) NOT NULL,
+    mem_address VARCHAR(100),
+    mem_access CHAR(1) NOT NULL DEFAULT '0',
+    mem_bonus INT NOT NULL DEFAULT 0
+);
+
+INSERT INTO `member` (mem_name, mem_account, mem_password, mem_birthday, mem_phone, mem_email, mem_address)
+VALUES
+	('testing', 'testing', 'testing', '1970-01-01', '1234567890', 'tibamegp3@gmail.com', '320桃園市中壢區復興路46號9樓'),
+    ('John Doe', 'john123', 'pass123', '1990-05-10', '1234567890', 'john.doe@example.com', '123 Main St, City'),
+    ('Jane Smith', 'jane456', 'pass456', '1985-08-20', '9876543210', 'jane.smith@example.com', '456 Elm St, City'),
+    ('Michael Johnson', 'michael789', 'pass789', '1992-02-15', '4567891230', 'michael.johnson@example.com', '789 Oak St, City'),
+    ('Emily Davis', 'emily001', 'pass001', '1998-11-25', '7891234560', 'emily.davis@example.com', '987 Pine St, City'),
+    ('David Wilson', 'david234', 'pass234', '1987-07-05', '1237894560', 'david.wilson@example.com', '345 Maple St, City'),
+    ('Olivia Thomas', 'olivia567', 'pass567', '1995-04-18', '9874561230', 'olivia.thomas@example.com', '654 Cedar St, City'),
+    ('James Anderson', 'james890', 'pass890', '1983-09-30', '1239876540', 'james.anderson@example.com', '789 Pine St, City'),
+    ('Sophia Miller', 'sophia002', 'pass002', '1991-06-12', '7894561230', 'sophia.miller@example.com', '123 Cedar St, City'),
+    ('Daniel Taylor', 'daniel345', 'pass345', '1997-03-05', '4561237890', 'daniel.taylor@example.com', '456 Maple St, City'),
+    ('Ava Martinez', 'ava678', 'pass678', '1994-01-15', '1234567890', 'ava.martinez@example.com', '789 Elm St, City');
+
+
+
+/* bonus */
+
+CREATE TABLE `bonus`(
+	bonus_id INT NOT NULL AUTO_INCREMENT,
+    mem_id INT NOT NULL,
+    bonus INT NOT NULL,
+	bonus_type VARCHAR(20),
+    bonus_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    bonus_status CHAR NOT NULL,
+    bonus_content VARCHAR(50),
+    CONSTRAINT PRIMARY KEY(bonus_id, mem_id)
 );
 
 
-/* sale_project */
 
-create table `sale_project` (
-	`sale_pro_id` int primary key not null auto_increment,
-    `dale_pro_name` varchar(50) not null,
-    `sale_pro_start` datetime not null,
-	`sale_pro_end` datetime not null
+/* lostpetarticle */
+
+CREATE TABLE `lost_pet_article` (
+	article_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	mem_id INT NOT NULL,
+	article_update DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	lost_date DATE NOT NULL,
+	lost_place VARCHAR(50) NOT NULL,
+	chip_num CHAR(20),
+	species VARCHAR(20),
+	color VARCHAR(100) NOT NULL,
+	feature CHAR(50) NOT NULL,
+	text VARCHAR(200),
+	contact_phone VARCHAR(20),
+	article_status CHAR(1) NOT NULL,
+    title VARCHAR(60) NOT NULL
 );
 
 
-/* status_date */
+/* fav-list */
 
-create table `status_date` (
-	`od_id` int primary key not null,
-	`od_status` char(1) not null default'0',
-    `od_date` datetime not null
-);
+CREATE TABLE `fav_list` (
+  `fav_list_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `mem_id` INT NOT NULL,
+  `room_type_id` INT NOT NULL
+   );
+   INSERT INTO fav_list (mem_id, room_type_id) VALUES 
+(1, 5), (1, 6), (2, 7), (2, 8), (3, 9),
+(3, 10), (4, 11), (4, 12), (5, 13), (5, 14);
+
 
 
 /* ---------- ADD CONSTRAINTS ---------- */

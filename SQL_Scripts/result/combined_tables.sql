@@ -11,7 +11,7 @@ USE gp3;
 /* ---------- CREATE TABLE STATEMENTS ---------- */
 
 
-/* admin_access */
+/* CREATE_TABLE_admin_access */
 
 create table admin_access(
 	admin_id int,
@@ -20,7 +20,7 @@ create table admin_access(
 );
 
 
-/* order_detail */
+/* CREATE_TABLE_order_detail */
 
 create table `order_detail` (
 	`od_id` int not null,
@@ -32,7 +32,7 @@ create table `order_detail` (
 );
 
 
-/* adoptedapplication */
+/* CREATE_TABLE_adoptedapplication */
 
 CREATE TABLE `adopted_application` (
 	adopted_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -50,7 +50,7 @@ CREATE TABLE `adopted_application` (
 
 
 
-/* comment */
+/* CREATE_TABLE_comment */
 
 create table `comment` (
 	`com_id` int primary key not null auto_increment,
@@ -62,7 +62,7 @@ create table `comment` (
 );
 
 
-/* animalcorporation */
+/* CREATE_TABLE_animalcorporation */
 
 CREATE TABLE `animal_corporation` (
 	corp_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -79,7 +79,7 @@ CREATE TABLE `animal_corporation` (
 );
 
 
-/* hotel_owner */
+/* CREATE_TABLE_hotel_owner */
 
 CREATE TABLE `hotel_owner` (
   `hotel_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -102,7 +102,7 @@ CREATE TABLE `hotel_owner` (
 );
 
 
-/* status_date */
+/* CREATE_TABLE_status_date */
 
 create table `status_date` (
 	`od_id` int primary key not null,
@@ -111,7 +111,7 @@ create table `status_date` (
 );
 
 
-/* Pet */
+/* CREATE_TABLE_Pet */
 
 CREATE TABLE `pet` (
 	pet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -137,7 +137,7 @@ VALUES
 
 
 
-/* room_review */
+/* CREATE_TABLE_room_review */
 
 create table room_review(
 	room_review_id int primary key not null AUTO_INCREMENT,
@@ -161,7 +161,7 @@ INSERT INTO room_review (hotel_id, room_order_id, room_review_score, room_review
 
 
 
-/* animalfavorite */
+/* CREATE_TABLE_animalfavorite */
 
 CREATE TABLE `animal_favorite` (
 	fav_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -170,7 +170,7 @@ CREATE TABLE `animal_favorite` (
 );
 
 
-/* product_img */
+/* CREATE_TABLE_product_img */
 
 create table `product_img` (
 	`pd_img_id` int primary key not null auto_increment,
@@ -179,7 +179,7 @@ create table `product_img` (
 );
 
 
-/* lostpetpic */
+/* CREATE_TABLE_lostpetpic */
 
 CREATE TABLE `lost_pet_pic` (
 	lost_pet_pic_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -188,7 +188,7 @@ CREATE TABLE `lost_pet_pic` (
 );
 
 
-/* admin */
+/* CREATE_TABLE_admin */
 
 create table admin(
 	admin_id int primary key not null,
@@ -217,7 +217,7 @@ VALUES
 
 
 
-/* animal */
+/* CREATE_TABLE_animal */
 
 CREATE TABLE `animal` (
 	animal_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -233,7 +233,7 @@ CREATE TABLE `animal` (
 
 
 
-/* animalpic */
+/* CREATE_TABLE_animalpic */
 
 CREATE TABLE `animal_pic` (
 	pic_id INT NOT NULL PRIMARY KEY,
@@ -243,7 +243,7 @@ CREATE TABLE `animal_pic` (
 
 
 
-/* room_order */
+/* CREATE_TABLE_room_order */
 
 create table room_order(
 	room_order_id int primary key not null AUTO_INCREMENT,
@@ -275,7 +275,7 @@ INSERT INTO room_order (mem_id, room_type_id, room_id, pet_id, room_order_date, 
 
 
 
-/* favorite */
+/* CREATE_TABLE_favorite */
 
 create table `favorite` (
 	`pd_id` int not null,
@@ -285,7 +285,7 @@ create table `favorite` (
 );
 
 
-/* lostpetresponce */
+/* CREATE_TABLE_lostpetresponce */
 
 CREATE TABLE `lost_pet_responce` (
 	responce_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -296,7 +296,7 @@ CREATE TABLE `lost_pet_responce` (
 );
 
 
-/* access_function */
+/* CREATE_TABLE_access_function */
 
 create table access_function(
 	function_id int primary key not null,
@@ -312,7 +312,7 @@ values
 
 
 
-/* order_master */
+/* CREATE_TABLE_order_master */
 
 create table `order_master` (
 	`od_id` int primary key not null auto_increment,
@@ -335,7 +335,7 @@ create table `order_master` (
 );
 
 
-/* news_list */
+/* CREATE_TABLE_news_list */
 
 use gp3;
 
@@ -350,7 +350,7 @@ news_photo longblob
 
 
 
-/* sale */
+/* CREATE_TABLE_sale */
 
 create table `sale` (
 	`pd_id` int not null,
@@ -360,7 +360,7 @@ create table `sale` (
 );
 
 
-/* sale_project */
+/* CREATE_TABLE_sale_project */
 
 create table `sale_project` (
 	`sale_pro_id` int primary key not null auto_increment,
@@ -370,7 +370,7 @@ create table `sale_project` (
 );
 
 
-/* room_pic */
+/* CREATE_TABLE_room_pic */
 
 CREATE TABLE `room_pic` (
   `room_pic_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT ,
@@ -405,7 +405,7 @@ VALUES
 
 
 
-/* promiselist */
+/* CREATE_TABLE_promiselist */
 
 CREATE TABLE `promise_list`(
 	promise_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -416,7 +416,7 @@ CREATE TABLE `promise_list`(
 );
 
 
-/* product */
+/* CREATE_TABLE_product */
 
 create table `product` (
 	`pd_id` int primary key not null auto_increment,
@@ -432,7 +432,7 @@ create table `product` (
 );
 
 
-/* room */
+/* CREATE_TABLE_room */
 
 CREATE TABLE `room` (
   `room_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -462,7 +462,7 @@ CREATE TABLE `room` (
 
 
 
-/* room_type */
+/* CREATE_TABLE_room_type */
 
 CREATE TABLE `room_type` (
   `room_type_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -502,7 +502,7 @@ VALUES
 (15, '舒適貓房', 2, '1', '為貓咪打造的豪華套房，提供貓砂箱、玩具與舒適的睡床。', 500, '貓','0');
 
 
-/* Member */
+/* CREATE_TABLE_Member */
 
 CREATE TABLE `member` (
 	mem_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -533,7 +533,7 @@ VALUES
 
 
 
-/* bonus */
+/* CREATE_TABLE_bonus */
 
 CREATE TABLE `bonus`(
 	bonus_id INT NOT NULL AUTO_INCREMENT,
@@ -548,7 +548,7 @@ CREATE TABLE `bonus`(
 
 
 
-/* lostpetarticle */
+/* CREATE_TABLE_lostpetarticle */
 
 CREATE TABLE `lost_pet_article` (
 	article_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -567,7 +567,7 @@ CREATE TABLE `lost_pet_article` (
 );
 
 
-/* fav-list */
+/* CREATE_TABLE_fav-list */
 
 CREATE TABLE `fav_list` (
   `fav_list_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

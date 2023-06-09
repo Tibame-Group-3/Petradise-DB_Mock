@@ -34,7 +34,7 @@ with open(output_file, "a", encoding="UTF-8") as outfile:
             print("Skipped file name: " + file_name)
             continue
         table_name = file_name.replace(".sql", "")
-        outfile.write(f"\n/* {table_name} */\n\n")
+        outfile.write(f"\n/* CREATE_TABLE_{table_name} */\n\n")
         # Open each SQL file in read mode
         with open(file_name, "r", encoding="UTF-8") as infile:
             # Read the content of the SQL file

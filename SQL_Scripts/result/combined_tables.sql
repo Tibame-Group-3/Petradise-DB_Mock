@@ -434,7 +434,6 @@ create table `product` (
 
 /* room */
 
-use test;
 CREATE TABLE `room` (
   `room_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `room_type_id` INT NOT NULL,

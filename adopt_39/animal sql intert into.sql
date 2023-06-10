@@ -87,3 +87,4 @@ INSERT INTO animal_pic (pic_id, animal_id, animal_pic) VALUES
 (9,20230509, 'ImageData9'),
 (10, 20230510, 'ImageData10');
 
+-- end--

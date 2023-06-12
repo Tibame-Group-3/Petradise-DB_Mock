@@ -11,7 +11,7 @@ CREATE TABLE `hotel_owner` (
   `owner_password` VARCHAR(20) NOT NULL,
   `owner_name` VARCHAR(50) NOT NULL,
   `owner_id` VARCHAR(10) NOT NULL,
-  `owner_bank` CHAR,
+  `owner_bank` VARCHAR(14) NOT NULL,
   `owner_phone` VARCHAR(20) NOT NULL,
   `owner_email` VARCHAR(50) NOT NULL,
   `owner_access` CHAR(1) NOT NULL DEFAULT '0'

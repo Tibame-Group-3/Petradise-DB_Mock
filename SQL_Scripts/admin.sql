@@ -10,15 +10,15 @@ create table admin(
     admin_status char(1) not null default '0'
 );
 
-INSERT INTO admin (admin_id, admin_name, admin_account, admin_password, admin_email, admin_title)
+INSERT INTO admin (admin_name, admin_account, admin_password, admin_email, admin_title)
 VALUES
-(1, 'John Doe', 'johndoe', 'pass123', 'johndoe@example.com', '0'),
-(2, 'Jane Smith', 'janesmith', 'password1', 'janesmith@example.com', '0'),
-(3, 'David Johnson', 'davidjohnson', 'davidjohnson@example.com', '0'),
-(4, 'Emily Brown', 'emilybrown', 'abc123', 'emilybrown@example.com', '0'),
-(5, 'Michael Davis', 'michaeldavis', 'qwerty', 'michaeldavis@example.com', '1'),
-(6, 'Olivia Wilson', 'oliviawilson', 'adminpass', 'oliviawilson@example.com', '1'),
-(7, 'William Taylor', 'williamtaylor', 'password123', 'williamtaylor@example.com', '1'),
-(8, 'Sophia Anderson', 'sophiaanderson', 'testpass', 'sophiaanderson@example.com', '2'),
-(9, 'James Martin', 'jamesmartin', '12345678', 'jamesmartin@example.com', '2'),
-(10, 'Isabella Thompson', 'isabellathompson', 'pass1234', 'isabellathompson@example.com', '2');
+('John Doe', 'johndoe', 'pass123', 'johndoe@example.com', '0'),
+('Jane Smith', 'janesmith', 'password1', 'janesmith@example.com', '0'),
+('David Johnson', 'davidjohnson', 'password2', 'davidjohnson@example.com', '0'),
+('Emily Brown', 'emilybrown', 'abc123', 'emilybrown@example.com', '0'),
+('Michael Davis', 'michaeldavis', 'qwerty', 'michaeldavis@example.com', '1'),
+('Olivia Wilson', 'oliviawilson', 'adminpass', 'oliviawilson@example.com', '1'),
+('William Taylor', 'williamtaylor', 'password123', 'williamtaylor@example.com', '1'),
+('Sophia Anderson', 'sophiaanderson', 'testpass', 'sophiaanderson@example.com', '2'),
+('James Martin', 'jamesmartin', '12345678', 'jamesmartin@example.com', '2'),
+('Isabella Thompson', 'isabellathompson', 'pass1234', 'isabellathompson@example.com', '2');

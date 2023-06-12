@@ -191,7 +191,7 @@ CREATE TABLE `lost_pet_pic` (
 /* CREATE_TABLE_admin */
 
 create table admin(
-	admin_id int primary key not null,
+	admin_id int primary key not null auto_increment,
     admin_name varchar(50) not null,
     admin_account varchar(20) not null,
     admin_password varchar(20) not null,

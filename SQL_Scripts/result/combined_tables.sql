@@ -206,6 +206,16 @@ CREATE TABLE `animal_favorite` (
 );
 
 
+/* CREATE_TABLE_pet_pic */
+
+CREATE TABLE `pet_pic`(
+	`id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `mem_id` INTEGER NOT NULL,
+    `pet_id` INTEGER NOT NULL,
+    `pic` LONGBLOB NOT NULL
+);
+
+
 /* CREATE_TABLE_product_img */
 
 create table `product_img` (
@@ -449,16 +459,6 @@ CREATE TABLE `promise_list`(
     animal_id INT NOT NULL,
     promise_time DATETIME NOT NULL,
     promise_status CHAR(1) NOT NULL
-);
-
-
-/* CREATE_TABLE_pet_pics */
-
-CREATE TABLE `pet_pics`(
-	`id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `mem_id` INTEGER NOT NULL,
-    `pet_id` INTEGER NOT NULL,
-    `pic` LONGBLOB NOT NULL
 );
 
 
@@ -774,7 +774,7 @@ alter table news_list add(
 
 
 /* pet_pics */
-ALTER TABLE `pet_pics` add(
-	CONSTRAINT `fk_pet_pics_member` FOREIGN KEY (mem_id) REFERENCES `member` (mem_id),
-    CONSTRAINT `fk_pet_pics_pet` FOREIGN KEY (pet_id) REFERENCES `pet` (pet_id)
+ALTER TABLE `pet_pic` add(
+	CONSTRAINT `fk_pet_pic_member` FOREIGN KEY (mem_id) REFERENCES `member` (mem_id),
+    CONSTRAINT `fk_pet_pic_pet` FOREIGN KEY (pet_id) REFERENCES `pet` (pet_id)
 )

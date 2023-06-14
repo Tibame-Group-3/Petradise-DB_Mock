@@ -59,9 +59,9 @@ VALUES
 /* CREATE_TABLE_admin_access */
 
 create table admin_access(
+	access_id int primary key not null auto_increment,
 	admin_id int,
-    function_id int,
-     primary key(admin_id, function_id)
+    function_id int
 );
 
 

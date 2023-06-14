@@ -210,7 +210,6 @@ CREATE TABLE `animal_favorite` (
 
 CREATE TABLE `pet_pic`(
 	`id` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `mem_id` INTEGER NOT NULL,
     `pet_id` INTEGER NOT NULL,
     `pic` LONGBLOB NOT NULL
 );
@@ -775,6 +774,5 @@ alter table news_list add(
 
 /* pet_pics */
 ALTER TABLE `pet_pic` add(
-	CONSTRAINT `fk_pet_pic_member` FOREIGN KEY (mem_id) REFERENCES `member` (mem_id),
     CONSTRAINT `fk_pet_pic_pet` FOREIGN KEY (pet_id) REFERENCES `pet` (pet_id)
 )

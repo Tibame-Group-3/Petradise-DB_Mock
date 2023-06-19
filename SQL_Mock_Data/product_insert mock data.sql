@@ -1,7 +1,8 @@
 use gp3;
 
 --  `product` --
-alter table `gp3`.`product` drop column `pd_spe`;
+alter table `db13`.`product` drop column `pd_spe`;
+alter table `db13`.`product` add column `pd_img` longblob;
 insert into `product` 
 (pd_type,
 pd_pet_type,

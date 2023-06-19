@@ -142,3 +142,8 @@ alter table news_list add(
 	foreign key (admin_id) references admin (admin_id)
 );
 
+
+/* pet_pics */
+ALTER TABLE `pet_pic` add(
+    CONSTRAINT `fk_pet_pic_pet` FOREIGN KEY (pet_id) REFERENCES `pet` (pet_id)
+)

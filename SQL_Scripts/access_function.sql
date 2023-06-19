@@ -1,11 +1,11 @@
 create table access_function(
-	function_id int primary key not null,
-    function_name varchar(20) not null
+	function_id int primary key not null auto_increment,
+    function_name char(1) not null
 );
 
-insert into access_function (function_id, function_name)
+insert into access_function (function_name)
 values
-(1, '旅館'),
-(2, '收容'),
-(3, '商城'),
-(4, '員工');
+('0'),
+('1'),
+('2'),
+('3');

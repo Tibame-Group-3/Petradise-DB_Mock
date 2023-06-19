@@ -1,3 +1,8 @@
+use gp3;
+
+SELECT * FROM gp3.hotel_owner;
+
+drop TABLE hotel_owner;
 
 CREATE TABLE `hotel_owner` (
   `hotel_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

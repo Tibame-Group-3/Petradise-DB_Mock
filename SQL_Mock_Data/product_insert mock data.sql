@@ -1,8 +1,14 @@
 use gp3;
+--  `news_list` --
+alter table `news_list` rename to `news`;
+alter table `gp3`.`news` drop foreign key `fk_administrator_newslist`;
+alter table `gp3`.`news` drop column `admin_id`;
+alter table `gp3`.`news` drop column `news_photo`;
+
 
 --  `product` --
-alter table `db13`.`product` drop column `pd_spe`;
-alter table `db13`.`product` add column `pd_img` longblob;
+alter table `gp3`.`product` drop column `pd_spe`;
+alter table `gp3`.`product` add column `pd_img` longblob;
 insert into `product` 
 (pd_type,
 pd_pet_type,
@@ -81,13 +87,11 @@ values
 ('萬聖節寵物造型派對', '2023-10-01', '2023-10-31');
 
 -- news_list --
-insert into `news_list`
-(admin_id,
-news_title,
+insert into `news`
+(news_title,
 news_content,
-news_date,
-news_photo)
+news_date)
 values
-(1, '聰明吃，救健康！', '關心毛孩的飲食健康嗎？我們提供優質的寵物飼料和營養補充品。無論是貓、狗，還是寶可夢，無論是糧食還是樹果，您都能找到最合適的選擇，給您的寵物提供均衡營養，讓他們保持健康活力！', '2023-05-05', null),
-(1, '新品上架，限時特價促銷中！', '樹果系列上架了全新的產品，限時特價全系列商品9折優惠，數量有限售完為止要買要快，歡迎快來選購！', '2023-05-22', null),
-(1, '「夏日清涼狂歡會」促銷活動開跑！', '為了讓您的寵物度過炎炎夏日，我們舉辦商品優惠讓您清涼一夏！商城全面8折優惠，趕快來參加吧，讓您的寵物在炎炎夏日中感到舒適和愉快！', '2023-06-15', null);
+('聰明吃，救健康！', '關心毛孩的飲食健康嗎？我們提供優質的寵物飼料和營養補充品。無論是貓、狗，還是寶可夢，無論是糧食還是樹果，您都能找到最合適的選擇，給您的寵物提供均衡營養，讓他們保持健康活力！', '2023-05-05'),
+('新品上架，限時特價促銷中！', '樹果系列上架了全新的產品，限時特價全系列商品9折優惠，數量有限售完為止要買要快，歡迎快來選購！', '2023-05-22'),
+('「夏日清涼狂歡會」促銷活動開跑！', '為了讓您的寵物度過炎炎夏日，我們舉辦商品優惠讓您清涼一夏！商城全面8折優惠，趕快來參加吧，讓您的寵物在炎炎夏日中感到舒適和愉快！', '2023-06-15');

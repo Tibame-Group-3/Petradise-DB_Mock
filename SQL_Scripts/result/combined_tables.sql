@@ -471,7 +471,7 @@ create table room_order(
 	room_order_id int primary key not null AUTO_INCREMENT,
     mem_id int not null,
     room_type_id int not null,
-    room_id int not null,
+    room_id int,
     pet_id int not null,
     room_order_date datetime not null,
     check_in_date datetime not null,

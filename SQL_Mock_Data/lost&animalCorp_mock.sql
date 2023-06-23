@@ -11,7 +11,7 @@ VALUES
   (9, '2023-05-30 17:20:00', '2023-05-21', '高雄市', NULL, '狗', '棕色', '耳朵立起', '家中狗狗不見了', '0990123456', '1', '家中走失的狗'),
   (10, '2023-05-30 18:10:00', '2023-05-20', '台中市', '9876543210', '貓', '灰白相間', '尾巴短', '急尋找失蹤的貓咪', '0912345678', '1', '灰白貓咪不見了');
 
-INSERT INTO `lost_pet_responce` (mem_id, article_id, responce_content, responce_time)
+INSERT INTO `lost_pet_response` (mem_id, article_id, response_content, response_time)
 VALUES
   (1, 1, '我看到一隻類似描述的貓咪，請聯絡我', '2023-05-30 09:35:00'),
   (2, 1, '我也看到了，我可以協助尋找', '2023-05-30 10:20:00'),

@@ -519,7 +519,8 @@ create table `product` (
     `pd_info` varchar(150) default null,
     `pd_status` char(1) not null default'1',
     `pd_date` datetime not null,
-    `pd_rank` double default null
+    `pd_rank` double default null,
+    `pd_img` longblob
 );
 
 

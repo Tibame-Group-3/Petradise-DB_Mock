@@ -431,12 +431,9 @@ create table `order_master` (
     `od_pay` char(1),
     `od_ship` char(1),
     `od_note` varchar(100) default null,
-    `od_trace` varchar(20),
     `reci_name` varchar(50) not null,
     `reci_phone` varchar(20) not null,
-    `reci_add` varchar(100),
-    `reci_store` varchar(20),
-    `reci_date` datetime default null
+    `reci_add` varchar(100)
 );
 
 
@@ -460,7 +457,7 @@ news_photo longblob
 create table `sale` (
 	`pd_id` int not null,
     `sale_pro_id` int not null,
-    `sale_price` int not null,
+    `sale_discount` double not null default 1,
     primary key (`pd_id`, `sale_pro_id`)
 );
 
@@ -469,7 +466,7 @@ create table `sale` (
 
 create table `sale_project` (
 	`sale_pro_id` int primary key not null auto_increment,
-    `dale_pro_name` varchar(50) not null,
+    `sale_pro_name` varchar(100) not null,
     `sale_pro_start` datetime not null,
 	`sale_pro_end` datetime not null
 );
